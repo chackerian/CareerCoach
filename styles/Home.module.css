@@ -33,9 +33,12 @@
   text-align: center;
 }
 
+.headline {
+}
 
 .description {
   line-height: 1.5;
+  color: blue;
   font-size: 1.5rem;
 }
 
@@ -45,13 +48,13 @@
   justify-content: center;
   flex-wrap: wrap;
 
-  max-width: 800px;
+  max-width: 1000px;
   margin-top: 3rem;
 }
 
 .card {
   margin: 1rem;
-  flex-basis: 45%;
+  flex-basis: 30%;
   padding: 1.5rem;
   text-align: left;
   color: inherit;
@@ -77,6 +80,73 @@
   margin: 0;
   font-size: 1.25rem;
   line-height: 1.5;
+}
+
+.premium-options-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.register {
+  padding-top: 40px;
+}
+
+.premium-option {
+    width: 300px;
+    height: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+}
+
+.premium-option h2 {
+    text-align: center;
+    color: #007bff;
+}
+
+.premium-option p {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.premium-option ul {
+    list-style: none;
+    padding: 0;
+}
+
+.premium-option li {
+    margin-bottom: 5px;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.btn-reg {
+  width: 150px;
+  margin: 2em;
+  font-size: 30px;
+  background-color: black;
 }
 
 .logo {

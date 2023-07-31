@@ -1,53 +1,55 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
+import { loadStripe } from '@stripe/stripe-js';
+import { useState, useEffect } from 'react';
+import PremiumOptions from './premium'
+
+const stripePromise = loadStripe("pk_live_6I69qE8NoOi8Q6OxIIy6Wapu");
 
 export default function Home() {
+
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Career Coach</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <main className={styles.main}>
+      <div className={styles.headline}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Welcome to CareerCoach
         </h1>
 
         <p className={styles.description}>
-          Get started by editing <code>pages/index.js</code>
+          We help you find your next role with custom strategies tailored to your profile
         </p>
+      </div>
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+          <div className={styles.card}>
+            <h3>1. Analysis</h3>
+            <p>Enter your credentials into the system and get a personalized review of your profile</p>
+          </div>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+          <div className={styles.card}>
+            <h3>2. Review Suggestions</h3>
+            <p>View custom solutions and suggestions to enhance your profile</p>
+          </div>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+          <div className={styles.card}>
+            <h3>3. Optimization and Open Positions</h3>
+            <p>Apply solutions to your profile and view jobs tailored to you</p>
+          </div>
         </div>
       </main>
+
+    <div className={styles.register}>
+      <a href="/login" className={`${styles.btn} ${styles['btn-reg']}`}>Sign Up</a>
+      <a href="/login" className={`${styles.btn} ${styles['btn-reg']}`}>Login</a>
+    </div>
+
+    <PremiumOptions />
 
       <footer>
         <a
@@ -63,6 +65,7 @@ export default function Home() {
       <style jsx>{`
         main {
           padding: 5rem 0;
+          padding-bottom: 0 !important;
           flex: 1;
           display: flex;
           flex-direction: column;
@@ -86,14 +89,6 @@ export default function Home() {
           align-items: center;
           text-decoration: none;
           color: inherit;
-        }
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
         }
       `}</style>
 
