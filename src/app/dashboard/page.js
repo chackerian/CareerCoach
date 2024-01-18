@@ -1,72 +1,74 @@
 "use client";
-// Import necessary modules and components
 import React, { useState } from 'react';
 import axios from 'axios';
 import Head from 'next/head';
+import { useRouter } from 'next/navigation';
 import { Navbar } from '../components/Navbar';
 import styles from './dashboard.module.css';
+import ResumeDropzone from './ResumeDropzone';
 
 const Dashboard = () => {
-  const [resumeFile, setResumeFile] = useState(null);  // Update state to handle file
+  const [resumeFile, setResumeFile] = useState(null);
   const [reviewResult, setReviewResult] = useState(null);
 
   const handleFileChange = (e) => {
-    // Update state when file input changes
-    const file = e.target.files[0];
+    setResumeFile(e.target.files[0]);
+  };
+
+  const handleFileUpload = (file) => {
     setResumeFile(file);
   };
 
-  const handleReview = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     try {
-      // Create a FormData object to send the file
       const formData = new FormData();
       formData.append('resume', resumeFile);
-
-      // Use axios for file upload
       const response = await fetch('/api/analyze_resume', {
-      method: 'POST',
-      body: formData,
-    });
+              method: 'POST',
+              body: formData,
+              headers: {
+                // Note: No need to set 'Content-Type' for FormData as it is automatically set
+              },
+            });
 
-    if (!response.ok) {
-      // Handle non-successful responses
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    // Parse the response JSON
-    const responseData = await response.json();
-
-      // Set review result based on the response
+      const responseData = await response.json();
       setReviewResult(responseData);
     } catch (error) {
-      console.error("error", error);
-      // Handle error appropriately
+      console.error('Error submitting resume:', error);
     }
   };
 
   return (
     <>
-      <Head>
+    <Head>
         <title>Career Coach</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <div>
-        <h1>Resume Reviewer</h1>
-        {/* Use input type file for resume upload */}
-        <input type="file" onChange={handleFileChange} />
+    <div className={styles['dashboard']}>
+      <h1>Resume Reviewer</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Upload your resume:
+          <input type="file" accept=".pdf,.doc,.docx" onChange={handleFileChange} />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
 
-        {/* Additional UI elements as needed */}
-        <button onClick={handleReview}>Review Resume</button>
-
-        {reviewResult && (
-          <div>
-            <p>Review Result:</p>
-            <p>Is 1 page: {reviewResult.isValid ? 'Yes' : 'No'}</p>
-            <p>Grammar and Spelling: {reviewResult.grammarCheckResult}</p>
-          </div>
-        )}
-      </div>
+      {reviewResult && (
+        <div>
+          <h2>Review Result</h2>
+          <p className={styles['score']}>{reviewResult.totalScore}</p>
+          <p>{reviewResult.isOnePage ? 'The document is approximately one page.' : 'The document is longer than one page.'}</p>
+          <p>{reviewResult.hasSpellingAndGrammar ? 'Spelling and grammar are good.' : 'Spelling or grammar issues found.'}</p>
+          <p>{reviewResult.positionsReview ? 'Positions meet criteria.' : 'Positions do not meet criteria.'}</p>
+          <p>{reviewResult.hasStartAndEndTime ? 'Start and end times found.' : 'Start or end time not found for all positions.'}</p>
+          <p>{reviewResult.hasContactInfo ? 'Contact information found.' : 'No contact information found.'}</p>
+        </div>
+      )}
+    </div>
     </>
   );
 };
