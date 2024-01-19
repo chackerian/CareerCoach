@@ -1,0 +1,5 @@
+.navbar {
+    border-bottom: 3px solid transparent;
+    border-image: linear-gradient(to right, #38ff45, #01ff01);
+    border-image-slice: 1;
+}

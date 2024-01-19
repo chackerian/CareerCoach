@@ -9,6 +9,67 @@
   color: green;
 }
 
-.submit {
+.resume-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: auto;
+}
 
+.file-label {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.file-input {
+  display: none; /* Hide the default file input */
+}
+
+.file-input {
+  position: relative;
+  overflow: hidden;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 10px 15px;
+}
+
+/* Hide the default file input */
+.file-input input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+}
+
+/* Style the file input label text */
+.file-input label {
+  display: inline-block;
+  font-size: 16px;
+}
+
+/* Change color on hover for better UX */
+.file-input:hover {
+  background-color: #45a049;
+}
+
+.submit-button {
+  background-color: #4CAF50;
+  color: white;
+  margin: 1em;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
 }

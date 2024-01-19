@@ -1,6 +1,7 @@
 "use client"; 
 import Link from 'next/link';
 import { useState } from 'react';
+import styles from './navbar.module.css';
 
 export const Navbar = () => {
   const [active, setActive] = useState(false);
@@ -11,7 +12,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <nav className='flex items-center flex-wrap bg-green-400 p-3 '>
+     <nav className={`flex items-center flex-wrap bg-green-400 p-3 ${styles.navbar}`}>
         <Link href='/' legacyBehavior>
           <a className='inline-flex items-center p-2 mr-4 '>
             <span className='text-xl text-white font-bold uppercase tracking-wide'>

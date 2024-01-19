@@ -49,12 +49,23 @@ const Dashboard = () => {
       <Navbar />
     <div className={styles['dashboard']}>
       <h1>Resume Reviewer</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Upload your resume:
-          <input type="file" accept=".pdf,.doc,.docx" onChange={handleFileChange} />
-        </label>
-        <button type="submit">Submit</button>
+      <form className={styles['resume-form']} onSubmit={handleSubmit}>
+          <div className="relative">
+            <input
+              type="file"
+              accept=".pdf, .doc, .docx"
+              id="fileInput"
+              className="hidden"
+              onChange={handleFileChange}
+            />
+            <label
+              htmlFor="fileInput"
+              className="bg-yellow-500 text-white py-2 px-4 rounded cursor-pointer hover:bg-yellow-600"
+            >
+              Choose a file
+            </label>
+          </div>        
+        <button type="submit" className={styles['submit-button']}>Submit</button>
       </form>
 
       {reviewResult && (
