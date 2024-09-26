@@ -71,10 +71,9 @@ const Dashboard = () => {
       {reviewResult && (
         <div>
           <h2>Review Result</h2>
-          <p className={styles['score']}>{reviewResult.totalScore}</p>
+          <p className={styles['score']}>{reviewResult.totalScore}/100</p>
           <p>{reviewResult.isOnePage ? 'The document is approximately one page.' : 'The document is longer than one page.'}</p>
           <p>{reviewResult.hasSpellingAndGrammar ? 'Spelling and grammar are good.' : 'Spelling or grammar issues found.'}</p>
-          <p>{reviewResult.positionsReview ? 'Positions meet criteria.' : 'Positions do not meet criteria.'}</p>
           <p>{reviewResult.hasStartAndEndTime ? 'Start and end times found.' : 'Start or end time not found for all positions.'}</p>
           <p>{reviewResult.hasContactInfo ? 'Contact information found.' : 'No contact information found.'}</p>
         </div>
